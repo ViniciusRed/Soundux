@@ -23,6 +23,9 @@ jobs:
               with:
                   args: install openssl -y
 
+            - name: Check NuGet Remote
+              run: nuget sources
+              
             - name: Add NuGet Remote
               run: nuget.exe sources Add -Name "NuGetRemote" -Source "https://api.nuget.org/v3/index.json"
 
