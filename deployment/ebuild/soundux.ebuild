@@ -35,6 +35,6 @@ src_configure() {
 }
 
 pkg_postinst() {
-    optfeature "Downloader support" media-video/ffmpeg net-misc/youtube-dl
+    optfeature "Downloader support" media-video/ffmpeg net-misc/yt-dlp
     optfeature "Icon support" x11-libs/libwnck:3
 }

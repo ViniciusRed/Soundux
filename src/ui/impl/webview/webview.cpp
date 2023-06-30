@@ -8,7 +8,7 @@
 #include <helper/json/bindings.hpp>
 #include <helper/systeminfo/systeminfo.hpp>
 #include <helper/version/check.hpp>
-#include <helper/ytdl/youtube-dl.hpp>
+#include <helper/ytdl/yt-dlp.hpp>
 
 #ifdef _WIN32
 #include "../../assets/icon.h"

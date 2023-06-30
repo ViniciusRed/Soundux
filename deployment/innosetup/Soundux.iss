@@ -64,7 +64,7 @@ Source: "$PATH\build\Release\soundux.exe"; DestDir: "{app}"; Flags: ignoreversio
 Source: "$PATH\build\Release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "{tmp}\VBCABLE_Driver_Pack43.zip"; DestDir: "{app}"; Flags: external deleteafterinstall; Components: VBCable
 Source: "{tmp}\MicrosoftEdgeWebView2RuntimeInstallerX64.exe"; DestDir: "{tmp}"; Flags: external deleteafterinstall; Components: MicrosoftEdgeWebView2Runtime
-Source: "{tmp}\youtube-dl.exe"; DestDir: "{app}"; Flags: external ignoreversion; Components: FfmpegYouTubeDL
+Source: "{tmp}\yt-dlp.exe"; DestDir: "{app}"; Flags: external ignoreversion; Components: FfmpegYouTubeDL
 Source: "{tmp}\ffmpeg.exe"; DestDir: "{app}"; Flags: external ignoreversion; Components: FfmpegYouTubeDL
 Source: "{tmp}\vcredist_x86.exe"; DestDir: "{tmp}"; Flags: external deleteafterinstall; Components: FfmpegYouTubeDL
 Source: "{tmp}\vcredist_x64.exe"; DestDir: "{tmp}"; Flags: external deleteafterinstall; Components: FfmpegYouTubeDL
@@ -167,8 +167,8 @@ begin
       DownloadPage.Add('https://download.vb-audio.com/Download_CABLE/VBCABLE_Driver_Pack43.zip', 'VBCABLE_Driver_Pack43.zip', '')
     end;
     if WizardIsComponentSelected('FfmpegYouTubeDL') then begin
-      DownloadPage.Add('https://github.com/eugeneware/ffmpeg-static/releases/download/b5.0/win32-x64', 'ffmpeg.exe', '')
-      DownloadPage.Add('https://github.com/ytdl-org/youtube-dl/releases/download/2021.12.17/youtube-dl.exe', 'youtube-dl.exe', '')
+      DownloadPage.Add('https://github.com/eugeneware/ffmpeg-static/releases/lastest/download/win32-x64', 'ffmpeg.exe', '')
+      DownloadPage.Add('https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe', 'yt-dlp.exe', '')
 
       DownloadPage.Add('https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/vcredist_x86.exe', 'vcredist_x86.exe', '')
       DownloadPage.Add('https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/vcredist_x64.exe', 'vcredist_x64.exe', '')
@@ -201,4 +201,4 @@ Filename: "{app}\{#MyAppExeName}"; Flags: nowait postinstall skipifsilent; Descr
 [Components]
 Name: "MicrosoftEdgeWebView2Runtime"; Description: "Install Microsoft Edge WebView2 Runtime (mandatory)"; Types: custom full compact; Flags: fixed disablenouninstallwarning; Check: IsWebView2NotInstalled
 Name: "VBCable"; Description: "Install VBCable (recommended)"; Types: full; Flags: disablenouninstallwarning
-Name: "FfmpegYouTubeDL"; Description: "Install ffmpeg and youtube-dl (for Downloader support)"; Types: full; Flags: disablenouninstallwarning
+Name: "FfmpegYouTubeDL"; Description: "Install ffmpeg and yt-dlp (for Downloader support)"; Types: full; Flags: disablenouninstallwarning

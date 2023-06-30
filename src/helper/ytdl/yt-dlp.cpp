@@ -1,4 +1,4 @@
-#include "youtube-dl.hpp"
+#include "yt-dlp.hpp"
 #include <core/global/globals.hpp>
 #include <fancy.hpp>
 #include <helper/misc/misc.hpp>
@@ -12,7 +12,7 @@ namespace Soundux::Objects
     void YoutubeDl::setup()
     {
         TinyProcessLib::Process ytdlVersion(
-            "youtube-dl --version", "", []([[maybe_unused]] const char *message, [[maybe_unused]] std::size_t size) {},
+            "yt-dlp --version", "", []([[maybe_unused]] const char *message, [[maybe_unused]] std::size_t size) {},
             []([[maybe_unused]] const char *message, [[maybe_unused]] std::size_t size) {});
         TinyProcessLib::Process ffmpegVersion(
             "ffmpeg -version", "", []([[maybe_unused]] const char *message, [[maybe_unused]] std::size_t size) {},
@@ -21,7 +21,7 @@ namespace Soundux::Objects
         isAvailable = ytdlVersion.get_exit_status() == 0 && ffmpegVersion.get_exit_status() == 0;
         if (!isAvailable)
         {
-            Fancy::fancy.logTime().warning() << "youtube-dl or ffmpeg is not available!" << std::endl;
+            Fancy::fancy.logTime().warning() << "yt-dlp or ffmpeg is not available!" << std::endl;
         }
     }
     std::optional<nlohmann::json> YoutubeDl::getInfo(const std::string &url) const
@@ -37,13 +37,13 @@ namespace Soundux::Objects
             return std::nullopt;
         }
 
-        auto [result, success] = Helpers::getResultCompact("youtube-dl -i -j \"" + url + "\"");
+        auto [result, success] = Helpers::getResultCompact("yt-dlp -i -j \"" + url + "\"");
         if (success)
         {
             auto json = nlohmann::json::parse(result, nullptr, false);
             if (json.is_discarded())
             {
-                Fancy::fancy.logTime().warning() << "Failed to parse youtube-dl information" << std::endl;
+                Fancy::fancy.logTime().warning() << "Failed to parse yt-dlp information" << std::endl;
                 Globals::gGui->onError(Enums::ErrorCode::YtdlInvalidJson);
                 return std::nullopt;
             }
@@ -65,7 +65,7 @@ namespace Soundux::Objects
             return j;
         }
 
-        Fancy::fancy.logTime().warning() << "Failed to get info from youtube-dl" << std::endl;
+        Fancy::fancy.logTime().warning() << "Failed to get info from yt-dlp" << std::endl;
         Globals::gGui->onError(Enums::ErrorCode::YtdlInformationUnknown);
         return std::nullopt;
     }
@@ -99,7 +99,7 @@ namespace Soundux::Objects
                 currentDownload.reset();
             }
 
-            currentDownload.emplace("youtube-dl --extract-audio --audio-format mp3 --no-mtime \"" + url + "\" -o \"" +
+            currentDownload.emplace("yt-dlp --extract-audio --audio-format mp3 --no-mtime \"" + url + "\" -o \"" +
                                         currentTab->path + "/%(title)s.%(ext)s" + "\"",
                                     "", [](const char *rawData, std::size_t dataLen) {
                                         std::string data(rawData, dataLen);

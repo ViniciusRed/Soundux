@@ -13,7 +13,7 @@
 #include <guard.hpp>
 #include <helper/icons/icons.hpp>
 #include <helper/queue/queue.hpp>
-#include <helper/ytdl/youtube-dl.hpp>
+#include <helper/ytdl/yt-dlp.hpp>
 #include <memory>
 #include <ui/ui.hpp>
 #include <var_guard.hpp>

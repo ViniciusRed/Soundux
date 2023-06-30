@@ -27,7 +27,7 @@ Requires:       libwnck3
 Requires:       (pulseaudio or pipewire-pulseaudio)
 Requires:       redhat-lsb-core
 Requires:       webkit2gtk3
-Recommends:     ffmpeg youtube-dl
+Recommends:     ffmpeg yt-dlp
 
 %description
 A universal soundboard that uses PulseAudio modules or PipeWire linking
