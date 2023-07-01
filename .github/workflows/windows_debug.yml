@@ -27,7 +27,7 @@ jobs:
               run: nuget sources
 
             - name: Setup tmate session
-              uses: mxschmitt/action-tmate@latest
+              uses: mxschmitt/action-tmate@vlatest
               with:
                 limit-access-to-actor: true
               continue-on-error: true
